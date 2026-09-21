@@ -1,0 +1,6 @@
+{
+  "name": "Master Dev - Mobile App Studio",
+  "description": "Official landing page for Master Dev, a premier mobile app studio engineering high-performance iOS and Android applications for Apple App Store and Google Play.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

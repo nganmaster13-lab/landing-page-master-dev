@@ -1,0 +1,61 @@
+{
+  "_comment": "Copy of the db.json structure. See README > Configuration for what each field does.",
+  "company": {
+    "name": "Master Dev",
+    "legalName": "Master Dev Mobile Technologies",
+    "badge": "Independent app studio",
+    "tagline": "Main headline shown on the home page.",
+    "subtagline": "Short description of what the company does.",
+    "email": "nganmaster13@gmail.co",
+    "location": "Remote team",
+    "founded": "2021",
+    "workingHours": "Monday – Friday: 9:00 AM – 6:00 PM UTC"
+  },
+  "stores": {
+    "appStore": {
+      "name": "Apple App Store",
+      "shortName": "App Store",
+      "url": "PASTE_YOUR_APPLE_APP_STORE_DEVELOPER_URL_HERE",
+      "isConfigured": false,
+      "placeholderNote": "Replace with your official Apple Developer account URL",
+      "badgeLabel": "Download on the",
+      "storePlatform": "iOS & iPadOS"
+    },
+    "googlePlay": {
+      "name": "Google Play Store",
+      "shortName": "CH Play / Google Play",
+      "url": "PASTE_YOUR_GOOGLE_PLAY_DEVELOPER_URL_HERE",
+      "isConfigured": false,
+      "placeholderNote": "Replace with your official Google Play Developer account URL",
+      "badgeLabel": "GET IT ON",
+      "storePlatform": "Android"
+    }
+  },
+  "templateForAddingNewApp": {
+    "id": "my-new-app-slug",
+    "name": "App Name",
+    "tagline": "One sentence summary of what the app does.",
+    "category": "Productivity / Utilities / Lifestyle",
+    "rating": 4.9,
+    "reviewsCount": "10.5K",
+    "downloads": "1.0M+",
+    "platforms": [
+      "iOS",
+      "Android"
+    ],
+    "accentColor": "#ffffff",
+    "isFlagship": false,
+    "icon": "https://example.com/icon.png",
+    "coverImage": "https://example.com/screenshot.jpg",
+    "description": "Full paragraph description of the application.",
+    "highlights": [
+      "Key feature 1",
+      "Key feature 2",
+      "Key feature 3"
+    ],
+    "appStoreUrl": "https://apps.apple.com/app/my-new-app/id123456789",
+    "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.masterdev.mynewapp",
+    "version": "1.0.0",
+    "size": "25.0 MB"
+  }
+}

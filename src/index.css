@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f4f1ea;
+  --color-paper-2: #ebe6db;
+  --color-ink: #1d1c1a;
+  --color-muted: #6f6a60;
+  --color-line: #d8d1c3;
+  --color-accent: #c8462a;
+
+  --font-sans: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+}
+
+@layer base {
+  html {
+    background: var(--color-paper);
+  }
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+}
+
+@media print {
+  header, footer, .no-print {
+    display: none !important;
+  }
+}

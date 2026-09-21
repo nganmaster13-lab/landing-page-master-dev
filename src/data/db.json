@@ -1,0 +1,291 @@
+{
+  "company": {
+    "name": "Master Dev",
+    "legalName": "Master Dev Mobile Technologies",
+    "badge": "Independent app studio",
+    "tagline": "Small, well-made apps for iPhone and Android.",
+    "subtagline": "We design, build and look after our own apps on the App Store and Google Play — no ads for the sake of ads, no data we don’t need.",
+    "email": "nganmaster13@gmail.co",
+    "location": "Remote team",
+    "founded": "2021",
+    "workingHours": "Monday – Friday: 9:00 AM – 6:00 PM UTC"
+  },
+  "stores": {
+    "appStore": {
+      "name": "Apple App Store",
+      "shortName": "App Store",
+      "url": "https://apps.apple.com/developer/master-dev/id000000000",
+      "isConfigured": false,
+      "placeholderNote": "Replace with your official Apple Developer account URL",
+      "badgeLabel": "Download on the",
+      "storePlatform": "iOS & iPadOS"
+    },
+    "googlePlay": {
+      "name": "Google Play Store",
+      "shortName": "CH Play / Google Play",
+      "url": "https://play.google.com/store/apps/dev?id=0000000000000000000",
+      "isConfigured": false,
+      "placeholderNote": "Replace with your official Google Play Developer account URL",
+      "badgeLabel": "GET IT ON",
+      "storePlatform": "Android"
+    }
+  },
+  "metrics": [
+    {
+      "id": "downloads",
+      "label": "Global Store Downloads",
+      "value": "10M+",
+      "subtext": "Across 140+ countries"
+    },
+    {
+      "id": "rating",
+      "label": "Average Store Rating",
+      "value": "4.8★",
+      "subtext": "From 180,000+ customer reviews"
+    },
+    {
+      "id": "crash_free",
+      "label": "Crash-Free Sessions",
+      "value": "99.9%",
+      "subtext": "Engineered for rock-solid stability"
+    },
+    {
+      "id": "apps",
+      "label": "Published Applications",
+      "value": "12+",
+      "subtext": "Actively maintained & updated"
+    }
+  ],
+  "products": [
+    {
+      "id": "master-focus",
+      "name": "Master Focus",
+      "tagline": "Deep work sanctuary with ambient acoustic telemetry.",
+      "category": "Productivity & Utility",
+      "rating": 4.9,
+      "reviewsCount": "48.2K",
+      "downloads": "3.5M+",
+      "platforms": [
+        "iOS",
+        "Android"
+      ],
+      "accentColor": "#ffffff",
+      "isFlagship": true,
+      "icon": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=256&h=256&q=80",
+      "coverImage": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&h=800&q=80",
+      "description": "Master Focus combines the Pomodoro methodology with procedural white noise, biometric focus tracking, and seamless cross-platform iCloud and Google Drive synchronization.",
+      "highlights": [
+        "Dynamic Island & Live Activity real-time focus timers",
+        "Adaptive binaural audio generation without loops",
+        "Zero-latency widget support for Home and Lock screens",
+        "Strict on-device privacy telemetry"
+      ],
+      "appStoreUrl": "https://apps.apple.com/app/master-focus/id000000001",
+      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.masterdev.focus",
+      "version": "3.4.2",
+      "size": "34.8 MB"
+    },
+    {
+      "id": "nova-scanner",
+      "name": "Nova Scanner Pro",
+      "tagline": "High-fidelity mobile document scanner with neural OCR.",
+      "category": "Business & Utilities",
+      "rating": 4.8,
+      "reviewsCount": "62.4K",
+      "downloads": "4.1M+",
+      "platforms": [
+        "iOS",
+        "Android"
+      ],
+      "accentColor": "#e4e4e7",
+      "isFlagship": true,
+      "icon": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=256&h=256&q=80",
+      "coverImage": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&h=800&q=80",
+      "description": "Transforms your smartphone camera into an enterprise-grade document scanner with automatic edge detection, perspective flattening, and 90-language offline OCR.",
+      "highlights": [
+        "120fps hardware-accelerated document edge capture",
+        "Offline neural OCR text extraction with zero server upload",
+        "Cryptographic PDF password encryption and digital signatures",
+        "One-tap cloud sync to Google Drive, Dropbox, and Box"
+      ],
+      "appStoreUrl": "https://apps.apple.com/app/nova-scanner/id000000002",
+      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.masterdev.novascanner",
+      "version": "4.1.0",
+      "size": "42.1 MB"
+    },
+    {
+      "id": "aura-habits",
+      "name": "Aura Habits",
+      "tagline": "Minimalist habit architecture for intentional living.",
+      "category": "Health & Lifestyle",
+      "rating": 4.9,
+      "reviewsCount": "31.1K",
+      "downloads": "1.8M+",
+      "platforms": [
+        "iOS",
+        "Android"
+      ],
+      "accentColor": "#fafafa",
+      "isFlagship": false,
+      "icon": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=256&h=256&q=80",
+      "coverImage": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&h=800&q=80",
+      "description": "Designed with monochrome elegance. Aura provides interactive streak visualizations, smart contextual reminders based on your daily schedule, and Apple Health / Google Fit sync.",
+      "highlights": [
+        "Minimalist Apple-inspired monochrome dashboard",
+        "Interactive iOS 17+ interactive widgets & Android glanceables",
+        "HealthKit & Google Health Connect dual integration",
+        "Offline-first end-to-end encrypted backup"
+      ],
+      "appStoreUrl": "https://apps.apple.com/app/aura-habits/id000000003",
+      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.masterdev.aurahabits",
+      "version": "2.8.5",
+      "size": "28.4 MB"
+    },
+    {
+      "id": "lumina-photo",
+      "name": "Lumina Color Lab",
+      "tagline": "Cinematic color grading & RAW mobile photography suite.",
+      "category": "Photo & Video",
+      "rating": 4.8,
+      "reviewsCount": "27.8K",
+      "downloads": "1.5M+",
+      "platforms": [
+        "iOS",
+        "Android"
+      ],
+      "accentColor": "#f4f4f5",
+      "isFlagship": false,
+      "icon": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=256&h=256&q=80",
+      "coverImage": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1200&h=800&q=80",
+      "description": "Professional 32-bit floating point color pipeline on mobile. Access real-time histogram evaluation, custom 3D LUT importing, and lossless compression.",
+      "highlights": [
+        "Lossless Apple ProRAW and Android RAW (DNG) processing",
+        "Proprietary 35mm analogue film grain simulation",
+        "Metal & Vulkan GPU acceleration with zero latency",
+        "Batch editing and instant preset sharing"
+      ],
+      "appStoreUrl": "https://apps.apple.com/app/lumina-color/id000000004",
+      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.masterdev.lumina",
+      "version": "2.1.2",
+      "size": "58.2 MB"
+    }
+  ],
+  "pillars": [
+    {
+      "icon": "Smartphone",
+      "title": "Native on both platforms",
+      "description": "Swift and SwiftUI on iOS, Kotlin and Jetpack Compose on Android. It takes longer, but the apps feel like they belong on your phone."
+    },
+    {
+      "icon": "ShieldCheck",
+      "title": "Your data stays yours",
+      "description": "Whenever we can, things run on your device. We don’t sell data and we only collect what an app actually needs to work."
+    },
+    {
+      "icon": "Sparkles",
+      "title": "Sweat the details",
+      "description": "Scrolling, haptics, typography, empty states — the small stuff is most of what makes an app pleasant, so we spend time on it."
+    },
+    {
+      "icon": "Globe",
+      "title": "Keep shipping",
+      "description": "We update our apps regularly, translate them into the languages our users speak, and actually read the reviews."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Where can I download applications created by Master Dev?",
+      "answer": "All our public applications are officially distributed on the Apple App Store for iOS/iPadOS and the Google Play Store (CH Play) for Android. You can browse our apps in the Products section above."
+    },
+    {
+      "question": "How do you handle user data and privacy?",
+      "answer": "We adhere to a strict 'Privacy First' philosophy. Our applications do not sell personal data, use intrusive trackers, or collect unnecessary telemetry. Read our full Privacy Policy on the /policy page."
+    },
+    {
+      "question": "Can I contact Master Dev for partnerships or support?",
+      "answer": "Yes! For general inquiries, support, enterprise partnerships, or press inquiries, reach our team directly at nganmaster13@gmail.co."
+    },
+    {
+      "question": "How often are the apps updated?",
+      "answer": "We roll out bi-weekly updates ensuring complete compatibility with the latest iOS and Android system releases, security patches, and performance optimizations."
+    }
+  ],
+  "policyDocument": {
+    "lastUpdated": "September 2026",
+    "effectiveDate": "January 1, 2024",
+    "company": "Master Dev",
+    "contactEmail": "nganmaster13@gmail.co",
+    "introduction": "This Privacy Policy explains how Master Dev ('we', 'us', or 'our') collects, protects, uses, and shares information when you use our mobile applications distributed via the Apple App Store and Google Play Store (CH Play), as well as our official website.",
+    "sections": [
+      {
+        "id": "data-we-collect",
+        "title": "1. Information We Collect and Process",
+        "content": "Our applications are designed with on-device processing at the core. We do not require you to create accounts for single-user offline utilities. When data is collected, it includes strictly essential information:\n\n• Device & Diagnostic Data: Non-identifiable device models, operating system versions, and anonymized crash logs to ensure app stability.\n• User Content: Any documents, images, habits, or notes created in our apps are stored locally on your device or in your personal cloud accounts (Apple iCloud or Google Drive) with zero server-side access by Master Dev.\n• In-App Purchases: Transaction processing is handled exclusively by Apple StoreKit or Google Play In-App Billing. Master Dev never stores credit card or financial credentials."
+      },
+      {
+        "id": "device-permissions",
+        "title": "2. Mobile Device Permissions",
+        "content": "Our applications may request permission to access certain hardware features only when strictly required for explicit user features:\n\n• Camera: Required for document scanning or photo editing. Frames are processed entirely in memory.\n• Notifications: Optional alerts for focus timers, daily habit reminders, and critical app updates.\n• Storage / Media: To allow you to import and export files on Android devices.\n\nYou can revoke these permissions at any time through your device's operating system settings."
+      },
+      {
+        "id": "third-party-services",
+        "title": "3. Third-Party Service Providers",
+        "content": "To deliver reliable mobile experiences, we partner with verified industry-standard SDKs:\n\n• Apple StoreKit & Google Play Core: Digital purchase verification and licensing.\n• Google Play Services: Core security and performance diagnostics.\n• Anonymized Analytics: Aggregated crash telemetry (Firebase Crashlytics / Apple App Analytics) that contains no personally identifiable data."
+      },
+      {
+        "id": "gdpr-ccpa",
+        "title": "4. GDPR & CCPA Compliance",
+        "content": "Under the General Data Protection Regulation (GDPR) and California Consumer Privacy Act (CCPA), users possess the right to:\n\n• Access any data held regarding their device.\n• Request immediate deletion of any associated telemetry.\n• Opt-out of non-essential analytics at any moment.\n\nSince we do not maintain centralized user identity databases, your privacy remains mathematically safeguarded."
+      },
+      {
+        "id": "children-privacy",
+        "title": "5. Children's Privacy",
+        "content": "Our applications comply with the Children's Online Privacy Protection Act (COPPA). We do not knowingly collect personal information from children under the age of 13. If you believe an app has inadvertently collected data from a minor, please contact us immediately."
+      },
+      {
+        "id": "policy-contact",
+        "title": "6. Contact Information & Data Protection Officer",
+        "content": "If you have any questions or feedback regarding this Privacy Policy, please contact our data privacy officer at:\n\nMaster Dev Legal & Privacy Team\nEmail: nganmaster13@gmail.co\nResponse time: Within 48 business hours."
+      }
+    ]
+  },
+  "termsDocument": {
+    "lastUpdated": "September 2026",
+    "effectiveDate": "January 1, 2024",
+    "company": "Master Dev",
+    "contactEmail": "nganmaster13@gmail.co",
+    "introduction": "Welcome to Master Dev. These Terms of Service ('Terms') govern your access to and use of all mobile applications, services, and websites operated by Master Dev. By downloading, installing, or using any of our applications from the Apple App Store or Google Play Store, you agree to be bound by these Terms.",
+    "sections": [
+      {
+        "id": "license-grant",
+        "title": "1. End-User License Agreement (EULA)",
+        "content": "Master Dev grants you a revocable, non-exclusive, non-transferable, limited license to download, install, and execute the applications solely for personal, non-commercial purposes on compatible mobile devices you own or control, in accordance with the Apple App Store Terms of Service and Google Play Developer Distribution Agreement."
+      },
+      {
+        "id": "ip-rights",
+        "title": "2. Intellectual Property Rights",
+        "content": "All visual interfaces, source code, artwork, algorithms, audio compositions, trademarks, and design systems embodied within Master Dev applications are the exclusive intellectual property of Master Dev and its licensors. You may not decompile, reverse-engineer, modify, or create derivative works without explicit written authorization."
+      },
+      {
+        "id": "subscriptions-billing",
+        "title": "3. In-App Purchases, Subscriptions & Refunds",
+        "content": "Certain features may be offered on a freemium, lifetime purchase, or recurring subscription basis:\n\n• Payment: Charged directly through your Apple ID or Google Play account at confirmation of purchase.\n• Renewal: Subscriptions automatically renew unless cancelled at least 24 hours prior to the end of the current billing cycle.\n• Management & Refunds: Subscriptions and refund requests are administered directly through Apple StoreKit or Google Play Store account settings in accordance with their respective refund policies."
+      },
+      {
+        "id": "acceptable-use",
+        "title": "4. Acceptable Use Policy",
+        "content": "You agree not to use our applications to violate any applicable laws, transmit malicious code, attempt unauthorized access to our infrastructure, or infringe upon the rights of others."
+      },
+      {
+        "id": "disclaimer",
+        "title": "5. Warranty Disclaimer & Limitation of Liability",
+        "content": "Master Dev applications are provided 'AS IS' and 'AS AVAILABLE' without warranties of any kind, whether express or implied. To the maximum extent permitted by applicable law, Master Dev shall not be liable for any indirect, incidental, or consequential damages resulting from your use or inability to use the software."
+      },
+      {
+        "id": "governing-law",
+        "title": "6. Governing Law & Contact",
+        "content": "These Terms shall be interpreted and governed by applicable commercial laws. Any dispute arising under these Terms shall be resolved amicably through direct communication.\n\nFor legal questions or formal notices:\nMaster Dev Legal Department\nEmail: nganmaster13@gmail.co"
+      }
+    ]
+  }
+}
