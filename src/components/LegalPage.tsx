@@ -1,6 +1,8 @@
 import React from 'react';
 import { ArrowLeft } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import { LegalDocument, PageRoute } from '../types';
+import { Reveal } from './Reveal';
 
 interface LegalPageProps {
   title: string;
@@ -9,6 +11,8 @@ interface LegalPageProps {
 }
 
 export const LegalPage: React.FC<LegalPageProps> = ({ title, document: doc, navigate }) => {
+  const reduceMotion = useReducedMotion();
+
   return (
     <article className="pt-32 pb-24">
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
@@ -21,12 +25,17 @@ export const LegalPage: React.FC<LegalPageProps> = ({ title, document: doc, navi
           Back
         </button>
 
-        <header className="mt-8 pb-10 border-b border-line">
+        <motion.header
+          initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: reduceMotion ? 0 : 0.55, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-8 pb-10 border-b border-line"
+        >
           <h1 className="font-serif text-5xl sm:text-7xl tracking-tight">{title}</h1>
           <p className="mt-4 text-sm text-muted">
             Last updated {doc.lastUpdated} · Effective {doc.effectiveDate}
           </p>
-        </header>
+        </motion.header>
 
         <div className="mt-12 grid gap-12 lg:grid-cols-[14rem_1fr]">
           <nav className="no-print hidden lg:block">
@@ -41,7 +50,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({ title, document: doc, navi
             </ul>
           </nav>
 
-          <div className="max-w-2xl">
+          <Reveal className="max-w-2xl">
             <p className="text-lg leading-relaxed">{doc.introduction}</p>
 
             {doc.sections.map((section) => (
@@ -58,7 +67,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({ title, document: doc, navi
               </a>
               .
             </p>
-          </div>
+          </Reveal>
         </div>
       </div>
     </article>

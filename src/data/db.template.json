@@ -6,7 +6,7 @@
     "badge": "Independent app studio",
     "tagline": "Main headline shown on the home page.",
     "subtagline": "Short description of what the company does.",
-    "email": "nganmaster13@gmail.co",
+    "email": "nganmaster13@gmail.com",
     "location": "Remote team",
     "founded": "2021",
     "workingHours": "Monday – Friday: 9:00 AM – 6:00 PM UTC"
@@ -39,20 +39,13 @@
     "rating": 4.9,
     "reviewsCount": "10.5K",
     "downloads": "1.0M+",
-    "platforms": [
-      "iOS",
-      "Android"
-    ],
+    "platforms": ["iOS", "Android"],
     "accentColor": "#ffffff",
     "isFlagship": false,
     "icon": "https://example.com/icon.png",
     "coverImage": "https://example.com/screenshot.jpg",
     "description": "Full paragraph description of the application.",
-    "highlights": [
-      "Key feature 1",
-      "Key feature 2",
-      "Key feature 3"
-    ],
+    "highlights": ["Key feature 1", "Key feature 2", "Key feature 3"],
     "appStoreUrl": "https://apps.apple.com/app/my-new-app/id123456789",
     "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.masterdev.mynewapp",
     "version": "1.0.0",

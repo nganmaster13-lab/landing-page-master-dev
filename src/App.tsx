@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { PageRoute } from './types';
 import db from './data/db.json';
 import { Navbar } from './components/Navbar';
@@ -13,6 +14,7 @@ import { Footer } from './components/Footer';
 
 export default function App() {
   const [currentRoute, setCurrentRoute] = useState<PageRoute>('/');
+  const reduceMotion = useReducedMotion();
 
   // Initialize and listen to route changes (supporting both pathname and hash for robust previewing)
   useEffect(() => {
@@ -69,25 +71,35 @@ export default function App() {
     <div className="min-h-screen bg-paper text-ink flex flex-col">
       <Navbar currentRoute={currentRoute} navigate={navigate} scrollToSection={scrollToSection} />
 
-      <main className="flex-1">
-        {currentRoute === '/' && (
-          <>
-            <Hero onExploreApps={() => scrollToSection('products')} />
-            <ProductSection />
-            <StorePresence />
-            <EngineeringPillars />
-            <FAQSection />
-            <ContactSection />
-          </>
-        )}
+      <main className="flex-1 overflow-hidden">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={currentRoute}
+            initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
+            transition={{ duration: reduceMotion ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {currentRoute === '/' && (
+              <>
+                <Hero onExploreApps={() => scrollToSection('products')} />
+                <ProductSection />
+                <StorePresence />
+                <EngineeringPillars />
+                <FAQSection />
+                <ContactSection />
+              </>
+            )}
 
-        {currentRoute === '/policy' && (
-          <LegalPage title="Privacy Policy" document={db.policyDocument} navigate={navigate} />
-        )}
+            {currentRoute === '/policy' && (
+              <LegalPage title="Privacy Policy" document={db.policyDocument} navigate={navigate} />
+            )}
 
-        {currentRoute === '/terms' && (
-          <LegalPage title="Terms of Service" document={db.termsDocument} navigate={navigate} />
-        )}
+            {currentRoute === '/terms' && (
+              <LegalPage title="Terms of Service" document={db.termsDocument} navigate={navigate} />
+            )}
+          </motion.div>
+        </AnimatePresence>
       </main>
 
       <Footer navigate={navigate} scrollToSection={scrollToSection} />

@@ -1,6 +1,7 @@
 import React from 'react';
 import db from '../data/db.json';
 import { PageRoute } from '../types';
+import { Reveal } from './Reveal';
 
 interface FooterProps {
   navigate: (route: PageRoute) => void;
@@ -24,7 +25,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate, scrollToSection }) => 
 
   return (
     <footer className="border-t border-line text-sm text-muted">
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 py-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <Reveal className="max-w-6xl mx-auto px-5 sm:px-8 py-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4" distance={16}>
         <div className="lg:col-span-2">
           <div className="flex items-center gap-3">
             <img
@@ -74,9 +75,9 @@ export const Footer: React.FC<FooterProps> = ({ navigate, scrollToSection }) => 
             </a>
           </li>
         </ul>
-      </div>
+      </Reveal>
 
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 pb-10 text-xs leading-relaxed space-y-2">
+      <Reveal className="max-w-6xl mx-auto px-5 sm:px-8 pb-10 text-xs leading-relaxed space-y-2" delay={0.06} distance={12}>
         <p>
           © {year} {db.company.legalName}
         </p>
@@ -84,7 +85,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate, scrollToSection }) => 
           Apple, the Apple logo, iPhone, iPad and App Store are trademarks of Apple Inc., registered in the U.S.
           and other countries. Google Play and the Google Play logo are trademarks of Google LLC.
         </p>
-      </div>
+      </Reveal>
     </footer>
   );
 };

@@ -90,4 +90,4 @@ export interface DatabaseSchema {
   termsDocument: LegalDocument;
 }
 
-export type PageRoute = '/' | '/policy' | '/terms';
+export type PageRoute = "/" | "/policy" | "/terms";

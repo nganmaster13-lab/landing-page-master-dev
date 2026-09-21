@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import db from '../data/db.json';
 import { AppProduct } from '../types';
 import { ArrowUpRight, Star, X } from 'lucide-react';
@@ -26,6 +27,7 @@ const StoreLink: React.FC<{ href: string; children: React.ReactNode }> = ({ href
 export const ProductSection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [activeApp, setActiveApp] = useState<AppProduct | null>(null);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     if (!activeApp) return;
@@ -41,7 +43,13 @@ export const ProductSection: React.FC = () => {
   return (
     <section id="products" className="py-20 md:py-28 border-t border-line scroll-mt-16">
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <motion.div
+          initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: reduceMotion ? 0 : 0.65, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
+        >
           <div>
             <h2 className="font-serif text-5xl sm:text-6xl tracking-tight">Our apps</h2>
             <p className="text-muted mt-3 max-w-md">
@@ -65,26 +73,44 @@ export const ProductSection: React.FC = () => {
               </button>
             ))}
           </div>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-16">
-          {filteredProducts.map((app) => (
-            <article key={app.id}>
-              <button
-                type="button"
-                onClick={() => setActiveApp(app)}
-                className="block w-full aspect-[4/3] rounded-lg overflow-hidden bg-paper-2"
-                aria-label={`More about ${app.name}`}
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-16">
+          <AnimatePresence mode="popLayout">
+            {filteredProducts.map((app, index) => (
+              <motion.article
+                layout
+                key={app.id}
+                initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.97 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{
+                  duration: reduceMotion ? 0 : 0.55,
+                  delay: reduceMotion ? 0 : index * 0.06,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
               >
-                <img
-                  src={app.coverImage}
-                  alt=""
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-500"
-                />
-              </button>
+                <motion.button
+                  type="button"
+                  onClick={() => setActiveApp(app)}
+                  className="block w-full aspect-[4/3] rounded-lg overflow-hidden bg-paper-2"
+                  aria-label={`More about ${app.name}`}
+                  whileHover={reduceMotion ? undefined : { y: -5 }}
+                  whileTap={reduceMotion ? undefined : { scale: 0.99 }}
+                  transition={{ type: 'spring', stiffness: 320, damping: 28 }}
+                >
+                  <motion.img
+                    src={app.coverImage}
+                    alt=""
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover"
+                    whileHover={reduceMotion ? undefined : { scale: 1.035 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  />
+                </motion.button>
 
-              <div className="mt-5 flex items-start gap-4">
+                <div className="mt-5 flex items-start gap-4">
                 <img
                   src={app.icon}
                   alt=""
@@ -101,46 +127,56 @@ export const ProductSection: React.FC = () => {
                   </div>
                   <p className="text-sm text-muted">{app.category}</p>
                 </div>
-              </div>
+                </div>
 
-              <p className="mt-4 leading-relaxed">{app.tagline}</p>
+                <p className="mt-4 leading-relaxed">{app.tagline}</p>
 
-              <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
-                <StoreLink href={app.appStoreUrl}>App Store</StoreLink>
-                <StoreLink href={app.googlePlayUrl}>Google Play</StoreLink>
-                <button
-                  type="button"
-                  onClick={() => setActiveApp(app)}
-                  className="text-muted hover:text-ink underline underline-offset-4 decoration-line"
-                >
-                  Details
-                </button>
-              </div>
-            </article>
-          ))}
-        </div>
+                <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+                  <StoreLink href={app.appStoreUrl}>App Store</StoreLink>
+                  <StoreLink href={app.googlePlayUrl}>Google Play</StoreLink>
+                  <button
+                    type="button"
+                    onClick={() => setActiveApp(app)}
+                    className="text-muted hover:text-ink underline underline-offset-4 decoration-line"
+                  >
+                    Details
+                  </button>
+                </div>
+              </motion.article>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
 
-      {activeApp && (
-        <div
-          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-6 bg-ink/40"
-          onClick={() => setActiveApp(null)}
-        >
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-label={activeApp.name}
-            onClick={(e) => e.stopPropagation()}
-            className="bg-paper w-full sm:max-w-xl max-h-[90vh] overflow-y-auto rounded-t-2xl sm:rounded-2xl p-6 sm:p-8 relative"
+      <AnimatePresence>
+        {activeApp && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-6 bg-ink/40"
+            onClick={() => setActiveApp(null)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: reduceMotion ? 0 : 0.22 }}
           >
-            <button
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-label={activeApp.name}
+              onClick={(e) => e.stopPropagation()}
+              initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 30, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.98 }}
+              transition={{ duration: reduceMotion ? 0 : 0.32, ease: [0.22, 1, 0.36, 1] }}
+              className="bg-paper w-full sm:max-w-xl max-h-[90vh] overflow-y-auto rounded-t-2xl sm:rounded-2xl p-6 sm:p-8 relative"
+            >
+              <button
               type="button"
               onClick={() => setActiveApp(null)}
               className="absolute top-4 right-4 p-2 text-muted hover:text-ink"
               aria-label="Close"
             >
               <X className="w-5 h-5" />
-            </button>
+              </button>
 
             <div className="flex items-center gap-4 pr-8">
               <img
@@ -201,9 +237,10 @@ export const ProductSection: React.FC = () => {
                 Google Play
               </a>
             </div>
-          </div>
-        </div>
-      )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
