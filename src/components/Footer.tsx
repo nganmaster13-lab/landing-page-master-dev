@@ -26,7 +26,14 @@ export const Footer: React.FC<FooterProps> = ({ navigate, scrollToSection }) => 
     <footer className="border-t border-line text-sm text-muted">
       <div className="max-w-6xl mx-auto px-5 sm:px-8 py-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-2">
-          <p className="font-serif text-3xl text-ink">{db.company.name}</p>
+          <div className="flex items-center gap-3">
+            <img
+              src="/brand/master-dev-mark.png"
+              alt=""
+              className="h-11 w-11 object-contain"
+            />
+            <p className="font-serif text-3xl text-ink">{db.company.name}</p>
+          </div>
           <a href={`mailto:${db.company.email}`} className={`block mt-3 ${linkClass}`}>
             {db.company.email}
           </a>

@@ -45,9 +45,15 @@ export const Navbar: React.FC<NavbarProps> = ({ navigate, scrollToSection }) => 
             setMobileMenuOpen(false);
             navigate('/');
           }}
-          className="font-serif text-2xl leading-none tracking-tight"
+          className="inline-flex items-center gap-2.5 font-serif text-2xl leading-none tracking-tight"
+          aria-label={`${db.company.name} home`}
         >
-          {db.company.name}
+          <img
+            src="/brand/master-dev-mark.png"
+            alt=""
+            className="h-9 w-9 object-contain"
+          />
+          <span>{db.company.name}</span>
         </a>
 
         <nav className="hidden md:flex items-center gap-8 text-[15px]">
