@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Serve the Vite entry point for client-side routes such as /policy and /terms.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

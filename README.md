@@ -12,6 +12,15 @@ npm run dev      # http://localhost:3000
 npm run build    # production build in dist/
 ```
 
+## Deploy to Netlify
+
+The repository includes [`netlify.toml`](netlify.toml), which configures Netlify to run
+`npm run build` and publish the generated `dist` directory. Client-side routes such as
+`/policy` and `/terms` are redirected to `index.html` so they also work when opened directly.
+
+After connecting the GitHub repository, trigger a new deploy. If the Netlify UI contains
+older build settings, use `npm run build` as the build command and `dist` as the publish directory.
+
 ## Configuration
 
 All content lives in [`src/data/db.json`](src/data/db.json). There is no config UI on the site — edit the file and rebuild. [`src/data/db.template.json`](src/data/db.template.json) shows the structure, including a template for adding a new app.
