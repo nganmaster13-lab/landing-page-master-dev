@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { PageRoute } from '../types';
 import db from '../data/db.json';
+import { appsSection } from '../config';
 import { Menu, X } from 'lucide-react';
 
 interface NavbarProps {
@@ -11,7 +12,7 @@ interface NavbarProps {
 }
 
 const sections = [
-  { id: 'products', label: 'Apps' },
+  appsSection,
   { id: 'approach', label: 'How we work' },
   { id: 'faq', label: 'FAQ' },
 ];

@@ -1,5 +1,6 @@
 import React from 'react';
 import db from '../data/db.json';
+import { appsSection } from '../config';
 import { PageRoute } from '../types';
 import { Reveal } from './Reveal';
 
@@ -42,8 +43,8 @@ export const Footer: React.FC<FooterProps> = ({ navigate, scrollToSection }) => 
 
         <ul className="space-y-2">
           <li>
-            <a href="#products" onClick={(e) => section(e, 'products')} className={linkClass}>
-              Apps
+            <a href={`#${appsSection.id}`} onClick={(e) => section(e, appsSection.id)} className={linkClass}>
+              {appsSection.label}
             </a>
           </li>
           <li>

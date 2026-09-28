@@ -57,7 +57,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreApps }) => {
               whileTap={reduceMotion ? undefined : { scale: 0.98 }}
               className="inline-flex items-center gap-2 text-[15px] underline underline-offset-4 decoration-line hover:decoration-ink transition-colors"
             >
-              See what we've made
+              Explore our apps
               <motion.span
                 animate={reduceMotion ? undefined : { y: [0, 4, 0] }}
                 transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}

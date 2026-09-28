@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { PageRoute } from './types';
 import db from './data/db.json';
+import { SHOW_OUR_APPS, appsSection } from './config';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { StorePresence } from './components/StorePresence';
 import { ProductSection } from './components/ProductSection';
+import { StorePresence } from './components/StorePresence';
 import { EngineeringPillars } from './components/EngineeringPillars';
 import { FAQSection } from './components/FAQSection';
 import { ContactSection } from './components/ContactSection';
@@ -82,8 +83,8 @@ export default function App() {
           >
             {currentRoute === '/' && (
               <>
-                <Hero onExploreApps={() => scrollToSection('products')} />
-                <ProductSection />
+                <Hero onExploreApps={() => scrollToSection(appsSection.id)} />
+                {SHOW_OUR_APPS && <ProductSection />}
                 <StorePresence />
                 <EngineeringPillars />
                 <FAQSection />
