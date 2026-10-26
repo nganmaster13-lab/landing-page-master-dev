@@ -275,5 +275,44 @@
         "content": "These Terms shall be interpreted and governed by applicable commercial laws. Any dispute arising under these Terms shall be resolved amicably through direct communication.\n\nFor legal questions or formal notices:\nMaster Dev Legal Department\nEmail: nganmaster13@gmail.com"
       }
     ]
+  },
+  "childSafetyStandardsDocument": {
+    "lastUpdated": "October 26, 2026",
+    "effectiveDate": "October 26, 2026",
+    "company": "Master deva",
+    "contactEmail": "nganmaster13@gmail.com",
+    "introduction": "These published standards apply to Reports Unfollowers Followers (package name: com.nganmaster13.followbeacon), offered on Google Play by Master deva. Reports Unfollowers Followers and Master deva explicitly prohibit child sexual abuse and exploitation (CSAE) and maintain a zero-tolerance approach to any content or conduct that endangers children.",
+    "sections": [
+      {
+        "id": "zero-tolerance",
+        "title": "1. Zero-Tolerance Standard",
+        "content": "Reports Unfollowers Followers strictly prohibits all forms of child sexual abuse and exploitation (CSAE). Prohibited conduct includes creating, uploading, sharing, requesting, promoting, or facilitating child sexual abuse material (CSAM); grooming or sexual solicitation of a child; sextortion; trafficking or exploitation of children for sexual purposes; and any attempt to sexualize, threaten, or endanger a child.\n\nThis prohibition applies to every user, account, profile, interaction, and item of content associated with the app."
+      },
+      {
+        "id": "reporting",
+        "title": "2. Reporting Child Safety Concerns",
+        "content": "Users can submit safety feedback or report suspected CSAE through the reporting or feedback mechanism available within Reports Unfollowers Followers. Reports may also be sent directly to our child safety contact at nganmaster13@gmail.com with the subject line “Child Safety Report.”\n\nInclude only the information needed for us to locate and investigate the concern. Do not download, copy, forward, or otherwise redistribute suspected CSAM. If a child is in immediate danger, contact local law enforcement or emergency services first."
+      },
+      {
+        "id": "enforcement",
+        "title": "3. Review and Enforcement",
+        "content": "We review child safety reports as a priority. When we identify content or conduct that violates these standards, we may remove or restrict access to the content, suspend or terminate the relevant account or access, preserve information when legally required, and take other steps necessary to prevent further harm.\n\nWe do not tolerate retaliation against anyone who raises a child safety concern in good faith."
+      },
+      {
+        "id": "csam-response",
+        "title": "4. CSAM Response and Reporting",
+        "content": "When we become aware of apparent CSAM, we take appropriate action consistent with applicable law. This may include restricting access, preserving relevant records, and reporting the matter to the National Center for Missing & Exploited Children (NCMEC) or other competent regional or national authorities when required. We cooperate with lawful requests from law enforcement and child protection agencies."
+      },
+      {
+        "id": "legal-compliance",
+        "title": "5. Compliance with Child Safety Laws",
+        "content": "Reports Unfollowers Followers and Master deva comply with applicable child safety laws and regulations in the jurisdictions where the app is available. We periodically review these standards and our safety processes so that we can respond to emerging risks and changes in legal requirements."
+      },
+      {
+        "id": "child-safety-contact",
+        "title": "6. Child Safety Point of Contact",
+        "content": "For questions, reports, or requests specifically concerning child safety, contact:\n\nChild Safety Team — Reports Unfollowers Followers\nDeveloper: Master deva\nEmail: nganmaster13@gmail.com\nRecommended subject: Child Safety Report\n\nThis address is monitored for child safety matters."
+      }
+    ]
   }
 }

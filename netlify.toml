@@ -5,7 +5,7 @@
 [build.environment]
   NODE_VERSION = "22"
 
-# Serve the Vite entry point for client-side routes such as /policy and /terms.
+# Serve the Vite entry point for client-side routes such as /policy, /terms and /child-safety-standards.
 [[redirects]]
   from = "/*"
   to = "/index.html"

@@ -23,6 +23,9 @@ export default function App() {
       const path = window.location.pathname.toLowerCase();
       const hash = window.location.hash.toLowerCase();
 
+      if (path.includes('/child-safety-standards') || hash.includes('child-safety-standards')) {
+        return '/child-safety-standards';
+      }
       if (path.includes('/policy') || hash.includes('policy')) {
         return '/policy';
       }
@@ -98,6 +101,14 @@ export default function App() {
 
             {currentRoute === '/terms' && (
               <LegalPage title="Terms of Service" document={db.termsDocument} navigate={navigate} />
+            )}
+
+            {currentRoute === '/child-safety-standards' && (
+              <LegalPage
+                title="Child Safety Standards"
+                document={db.childSafetyStandardsDocument}
+                navigate={navigate}
+              />
             )}
           </motion.div>
         </AnimatePresence>

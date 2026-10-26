@@ -88,6 +88,7 @@ export interface DatabaseSchema {
   faq: FAQItem[];
   policyDocument: LegalDocument;
   termsDocument: LegalDocument;
+  childSafetyStandardsDocument: LegalDocument;
 }
 
-export type PageRoute = "/" | "/policy" | "/terms";
+export type PageRoute = "/" | "/policy" | "/terms" | "/child-safety-standards";

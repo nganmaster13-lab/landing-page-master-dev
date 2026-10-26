@@ -71,6 +71,15 @@ export const Footer: React.FC<FooterProps> = ({ navigate, scrollToSection }) => 
             </a>
           </li>
           <li>
+            <a
+              href="/child-safety-standards"
+              onClick={(e) => nav(e, '/child-safety-standards')}
+              className={linkClass}
+            >
+              Child Safety Standards
+            </a>
+          </li>
+          <li>
             <a href="#contact" onClick={(e) => section(e, 'contact')} className={linkClass}>
               Contact
             </a>

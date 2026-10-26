@@ -1,6 +1,7 @@
 # Master Dev — studio website
 
-Landing page, Privacy Policy (`/policy`) and Terms of Service (`/terms`) for the Master Dev app studio.
+Landing page, Privacy Policy (`/policy`), Terms of Service (`/terms`) and app-specific
+Child Safety Standards (`/child-safety-standards`) for the Master Dev app studio.
 
 ## Run locally
 
@@ -35,6 +36,7 @@ All content lives in [`src/data/db.json`](src/data/db.json). There is no config 
 | `pillars` | "How we work" list (`icon` is no longer used) |
 | `faq` | Questions section |
 | `policyDocument`, `termsDocument` | Text of the `/policy` and `/terms` pages |
+| `childSafetyStandardsDocument` | Google Play child-safety standards for Reports Unfollowers Followers at `/child-safety-standards` |
 
 Product filter tabs match on `product.category` — if you add a new category, add it to the `categories` list in [`src/components/ProductSection.tsx`](src/components/ProductSection.tsx).
 
