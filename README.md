@@ -29,8 +29,8 @@ All content lives in [`src/data/db.json`](src/data/db.json). There is no config 
 | Key | What it controls |
 | --- | --- |
 | `company` | Studio name, legal name, headline (`tagline`), intro text (`subtagline`), contact `email`, location, working hours |
-| `stores.appStore.url` | Apple developer page — used by the App Store badges, store section and footer |
-| `stores.googlePlay.url` | Google Play developer page — same places as above |
+| `stores.appStore.url` | Apple destination used by App Store links when `isConfigured` is true |
+| `stores.googlePlay.url` | Google Play destination used by store badges, the store section and footer |
 | `metrics` | The four numbers in the dark band |
 | `products` | App cards. Each has its own `appStoreUrl` / `googlePlayUrl`, icon, cover image and details for the popup |
 | `pillars` | "How we work" list (`icon` is no longer used) |

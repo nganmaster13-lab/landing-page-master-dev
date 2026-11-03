@@ -37,20 +37,22 @@ export interface AppProduct {
   name: string;
   tagline: string;
   category: string;
-  rating: number;
-  reviewsCount: string;
+  rating?: number;
+  reviewsCount?: string;
   downloads: string;
   platforms: string[];
   accentColor: string;
   isFlagship: boolean;
   icon: string;
   coverImage: string;
+  screenshot?: string;
   description: string;
   highlights: string[];
-  appStoreUrl: string;
-  googlePlayUrl: string;
-  version: string;
-  size: string;
+  appStoreUrl?: string;
+  googlePlayUrl?: string;
+  version?: string;
+  size?: string;
+  updatedOn?: string;
 }
 
 export interface EngineeringPillar {

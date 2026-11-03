@@ -4,12 +4,14 @@ import db from '../data/db.json';
 import { AppProduct } from '../types';
 import { ArrowUpRight, Star, X } from 'lucide-react';
 
+const products = db.products as AppProduct[];
+
 const categories = [
   { id: 'all', label: 'All' },
-  { id: 'Productivity & Utility', label: 'Productivity' },
-  { id: 'Business & Utilities', label: 'Utilities' },
-  { id: 'Health & Lifestyle', label: 'Lifestyle' },
-  { id: 'Photo & Video', label: 'Photo' },
+  ...Array.from(new Set(products.map((app) => app.category))).map((category) => ({
+    id: category,
+    label: category,
+  })),
 ];
 
 const StoreLink: React.FC<{ href: string; children: React.ReactNode }> = ({ href, children }) => (
@@ -36,8 +38,8 @@ export const ProductSection: React.FC = () => {
     return () => window.removeEventListener('keydown', onKey);
   }, [activeApp]);
 
-  const filteredProducts = db.products.filter(
-    (app) => selectedCategory === 'all' || app.category.includes(selectedCategory)
+  const filteredProducts = products.filter(
+    (app) => selectedCategory === 'all' || app.category === selectedCategory
   );
 
   return (
@@ -57,25 +59,32 @@ export const ProductSection: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-x-5 gap-y-2 text-[15px]">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                type="button"
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`pb-0.5 border-b transition-colors ${
-                  selectedCategory === cat.id
-                    ? 'border-ink text-ink'
-                    : 'border-transparent text-muted hover:text-ink'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </div>
+          {products.length > 1 && (
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-[15px]">
+              {categories.map((cat) => (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={`pb-0.5 border-b transition-colors ${
+                    selectedCategory === cat.id
+                      ? 'border-ink text-ink'
+                      : 'border-transparent text-muted hover:text-ink'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
+          )}
         </motion.div>
 
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-16">
+        <motion.div
+          layout
+          className={`grid grid-cols-1 gap-x-10 gap-y-16 ${
+            products.length > 1 ? 'md:grid-cols-2' : 'max-w-4xl'
+          }`}
+        >
           <AnimatePresence mode="popLayout">
             {filteredProducts.map((app, index) => (
               <motion.article
@@ -94,7 +103,7 @@ export const ProductSection: React.FC = () => {
                 <motion.button
                   type="button"
                   onClick={() => setActiveApp(app)}
-                  className="block w-full aspect-[4/3] rounded-lg overflow-hidden bg-paper-2"
+                  className="block w-full aspect-[2/1] rounded-lg overflow-hidden bg-paper-2"
                   aria-label={`More about ${app.name}`}
                   whileHover={reduceMotion ? undefined : { y: -5 }}
                   whileTap={reduceMotion ? undefined : { scale: 0.99 }}
@@ -120,10 +129,14 @@ export const ProductSection: React.FC = () => {
                 <div className="min-w-0 flex-1">
                   <div className="flex items-baseline justify-between gap-3">
                     <h3 className="text-xl font-medium">{app.name}</h3>
-                    <span className="flex items-center gap-1 text-sm text-muted shrink-0">
-                      <Star className="w-3.5 h-3.5 fill-current" />
-                      {app.rating}
-                    </span>
+                    {app.rating ? (
+                      <span className="flex items-center gap-1 text-sm text-muted shrink-0">
+                        <Star className="w-3.5 h-3.5 fill-current" />
+                        {app.rating}
+                      </span>
+                    ) : (
+                      <span className="text-sm text-muted shrink-0">{app.downloads} installs</span>
+                    )}
                   </div>
                   <p className="text-sm text-muted">{app.category}</p>
                 </div>
@@ -132,8 +145,8 @@ export const ProductSection: React.FC = () => {
                 <p className="mt-4 leading-relaxed">{app.tagline}</p>
 
                 <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
-                  <StoreLink href={app.appStoreUrl}>App Store</StoreLink>
-                  <StoreLink href={app.googlePlayUrl}>Google Play</StoreLink>
+                  {app.appStoreUrl && <StoreLink href={app.appStoreUrl}>App Store</StoreLink>}
+                  {app.googlePlayUrl && <StoreLink href={app.googlePlayUrl}>Google Play</StoreLink>}
                   <button
                     type="button"
                     onClick={() => setActiveApp(app)}
@@ -193,22 +206,28 @@ export const ProductSection: React.FC = () => {
 
             <dl className="mt-6 grid grid-cols-3 border-y border-line text-sm">
               <div className="py-3">
-                <dt className="text-muted">Rating</dt>
-                <dd>
-                  {activeApp.rating} <span className="text-muted">({activeApp.reviewsCount})</span>
-                </dd>
+                <dt className="text-muted">Installs</dt>
+                <dd>{activeApp.downloads}</dd>
               </div>
               <div className="py-3 border-l border-line pl-4">
                 <dt className="text-muted">Version</dt>
-                <dd>{activeApp.version}</dd>
+                <dd>{activeApp.version ?? '—'}</dd>
               </div>
               <div className="py-3 border-l border-line pl-4">
-                <dt className="text-muted">Size</dt>
-                <dd>{activeApp.size}</dd>
+                <dt className="text-muted">Updated</dt>
+                <dd>{activeApp.updatedOn ?? '—'}</dd>
               </div>
             </dl>
 
             <p className="mt-6 leading-relaxed">{activeApp.description}</p>
+
+            {activeApp.screenshot && (
+              <img
+                src={activeApp.screenshot}
+                alt={`${activeApp.name} app preview`}
+                className="mt-6 w-full rounded-xl bg-paper-2"
+              />
+            )}
 
             <ul className="mt-6 space-y-2 text-[15px]">
               {activeApp.highlights.map((hl) => (
@@ -220,22 +239,26 @@ export const ProductSection: React.FC = () => {
             </ul>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href={activeApp.appStoreUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-2.5 rounded-full bg-ink text-paper text-sm hover:bg-accent transition-colors"
-              >
-                App Store
-              </a>
-              <a
-                href={activeApp.googlePlayUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-2.5 rounded-full border border-ink text-sm hover:bg-ink hover:text-paper transition-colors"
-              >
-                Google Play
-              </a>
+              {activeApp.appStoreUrl && (
+                <a
+                  href={activeApp.appStoreUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-2.5 rounded-full bg-ink text-paper text-sm hover:bg-accent transition-colors"
+                >
+                  App Store
+                </a>
+              )}
+              {activeApp.googlePlayUrl && (
+                <a
+                  href={activeApp.googlePlayUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-2.5 rounded-full border border-ink text-sm hover:bg-ink hover:text-paper transition-colors"
+                >
+                  Get it on Google Play
+                </a>
+              )}
             </div>
             </motion.div>
           </motion.div>

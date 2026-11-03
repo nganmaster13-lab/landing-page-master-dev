@@ -47,16 +47,20 @@ export const Footer: React.FC<FooterProps> = ({ navigate, scrollToSection }) => 
               {appsSection.label}
             </a>
           </li>
-          <li>
-            <a href={db.stores.appStore.url} target="_blank" rel="noopener noreferrer" className={linkClass}>
-              App Store
-            </a>
-          </li>
-          <li>
-            <a href={db.stores.googlePlay.url} target="_blank" rel="noopener noreferrer" className={linkClass}>
-              Google Play
-            </a>
-          </li>
+          {db.stores.appStore.isConfigured && (
+            <li>
+              <a href={db.stores.appStore.url} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                App Store
+              </a>
+            </li>
+          )}
+          {db.stores.googlePlay.isConfigured && (
+            <li>
+              <a href={db.stores.googlePlay.url} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                TV Remote on Google Play
+              </a>
+            </li>
+          )}
         </ul>
 
         <ul className="space-y-2">

@@ -44,11 +44,13 @@
     "isFlagship": false,
     "icon": "https://example.com/icon.png",
     "coverImage": "https://example.com/screenshot.jpg",
+    "screenshot": "https://example.com/tall-app-preview.jpg",
     "description": "Full paragraph description of the application.",
     "highlights": ["Key feature 1", "Key feature 2", "Key feature 3"],
     "appStoreUrl": "https://apps.apple.com/app/my-new-app/id123456789",
     "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.masterdev.mynewapp",
     "version": "1.0.0",
-    "size": "25.0 MB"
+    "size": "25.0 MB",
+    "updatedOn": "Month DD, YYYY"
   }
 }

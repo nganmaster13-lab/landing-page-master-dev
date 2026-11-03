@@ -13,9 +13,9 @@ const stores = [
   {
     key: 'googlePlay',
     config: db.stores.googlePlay,
-    blurb: 'The same apps, built natively for Android.',
+    blurb: 'TV Remote for Android, available from its official store listing.',
   },
-];
+].filter(({ config }) => config.isConfigured);
 
 export const StorePresence: React.FC = () => {
   const reduceMotion = useReducedMotion();
@@ -33,13 +33,18 @@ export const StorePresence: React.FC = () => {
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: reduceMotion ? 0 : 0.55, delay: reduceMotion ? 0 : index * 0.08, ease: [0.22, 1, 0.36, 1] }}
             >
-              <p className="font-serif text-5xl sm:text-6xl tracking-tight">{metric.value}</p>
+              <p className="font-serif text-[30px] sm:text-5xl lg:text-6xl tracking-tight">{metric.value}</p>
               <p className="mt-2 text-sm text-paper/60">{metric.label}</p>
             </motion.div>
           ))}
         </div>
 
-        <Reveal className="mt-16 grid md:grid-cols-2 border-t border-paper/15" delay={0.08}>
+        <Reveal
+          className={`mt-16 grid border-t border-paper/15 ${
+            stores.length > 1 ? 'md:grid-cols-2' : 'md:grid-cols-1 max-w-2xl'
+          }`}
+          delay={0.08}
+        >
           {stores.map(({ key, config, blurb }, i) => (
             <motion.a
               key={key}
@@ -49,7 +54,7 @@ export const StorePresence: React.FC = () => {
               whileHover={reduceMotion ? undefined : { x: i === 0 ? 4 : 6 }}
               transition={{ type: 'spring', stiffness: 360, damping: 28 }}
               className={`group flex items-start justify-between gap-6 py-8 border-b border-paper/15 md:border-b-0 ${
-                i === 1 ? 'md:pl-10 md:border-l' : 'md:pr-10'
+                i > 0 ? 'md:pl-10 md:border-l' : 'md:pr-10'
               }`}
             >
               <div>
