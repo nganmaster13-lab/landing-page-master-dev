@@ -1,8 +1,10 @@
 import React from 'react';
 import db from '../data/db.json';
 import { appsSection } from '../config';
-import { PageRoute } from '../types';
+import { AppProduct, PageRoute } from '../types';
 import { Reveal } from './Reveal';
+
+const products = db.products as AppProduct[];
 
 interface FooterProps {
   navigate: (route: PageRoute) => void;
@@ -41,27 +43,43 @@ export const Footer: React.FC<FooterProps> = ({ navigate, scrollToSection }) => 
           </a>
         </div>
 
-        <ul className="space-y-2">
-          <li>
-            <a href={`#${appsSection.id}`} onClick={(e) => section(e, appsSection.id)} className={linkClass}>
-              {appsSection.label}
-            </a>
-          </li>
-          {db.stores.appStore.isConfigured && (
-            <li>
-              <a href={db.stores.appStore.url} target="_blank" rel="noopener noreferrer" className={linkClass}>
-                App Store
-              </a>
-            </li>
-          )}
-          {db.stores.googlePlay.isConfigured && (
-            <li>
-              <a href={db.stores.googlePlay.url} target="_blank" rel="noopener noreferrer" className={linkClass}>
-                TV Remote on Google Play
-              </a>
-            </li>
-          )}
-        </ul>
+        <div>
+          <a
+            href={`#${appsSection.id}`}
+            onClick={(e) => section(e, appsSection.id)}
+            className={`font-medium text-ink ${linkClass}`}
+          >
+            {appsSection.label}
+          </a>
+          <ul className="mt-3 space-y-2">
+            {products.flatMap((app) => [
+              app.googlePlayUrl ? (
+                <li key={`${app.id}-google-play`}>
+                  <a
+                    href={app.googlePlayUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={linkClass}
+                  >
+                    {app.name} on Google Play
+                  </a>
+                </li>
+              ) : null,
+              app.appStoreUrl ? (
+                <li key={`${app.id}-app-store`}>
+                  <a
+                    href={app.appStoreUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={linkClass}
+                  >
+                    {app.name} on App Store
+                  </a>
+                </li>
+              ) : null,
+            ])}
+          </ul>
+        </div>
 
         <ul className="space-y-2">
           <li>
