@@ -73,12 +73,17 @@ export interface PolicySection {
 }
 
 export interface LegalDocument {
-  lastUpdated: string;
-  effectiveDate: string;
+  lastUpdated?: string;
+  effectiveDate?: string;
   company: string;
   contactEmail: string;
   introduction: string;
   sections: PolicySection[];
+}
+
+export interface DocumentNavItem {
+  label: string;
+  route: PageRoute;
 }
 
 export interface DatabaseSchema {
@@ -93,4 +98,11 @@ export interface DatabaseSchema {
   childSafetyStandardsDocument: LegalDocument;
 }
 
-export type PageRoute = "/" | "/policy" | "/terms" | "/child-safety-standards";
+export type PageRoute =
+  | "/"
+  | "/policy"
+  | "/terms"
+  | "/child-safety-standards"
+  | "/yestero/support"
+  | "/yestero/policy"
+  | "/yestero/terms";

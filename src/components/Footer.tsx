@@ -7,12 +7,14 @@ import { Reveal } from './Reveal';
 const products = db.products as AppProduct[];
 
 interface FooterProps {
+  currentRoute: PageRoute;
   navigate: (route: PageRoute) => void;
   scrollToSection: (id: string) => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ navigate, scrollToSection }) => {
+export const Footer: React.FC<FooterProps> = ({ currentRoute, navigate, scrollToSection }) => {
   const year = new Date().getFullYear();
+  const isYesteroRoute = currentRoute.startsWith('/yestero/');
 
   const nav = (e: React.MouseEvent, route: PageRoute) => {
     e.preventDefault();
@@ -82,25 +84,46 @@ export const Footer: React.FC<FooterProps> = ({ navigate, scrollToSection }) => 
         </div>
 
         <ul className="space-y-2">
+          {isYesteroRoute && (
+            <li>
+              <a
+                href="/yestero/support"
+                onClick={(e) => nav(e, '/yestero/support')}
+                className={linkClass}
+              >
+                Yestero Support
+              </a>
+            </li>
+          )}
           <li>
-            <a href="/policy" onClick={(e) => nav(e, '/policy')} className={linkClass}>
-              Privacy Policy
-            </a>
-          </li>
-          <li>
-            <a href="/terms" onClick={(e) => nav(e, '/terms')} className={linkClass}>
-              Terms of Service
+            <a
+              href={isYesteroRoute ? '/yestero/policy' : '/policy'}
+              onClick={(e) => nav(e, isYesteroRoute ? '/yestero/policy' : '/policy')}
+              className={linkClass}
+            >
+              {isYesteroRoute ? 'Yestero Privacy Policy' : 'Privacy Policy'}
             </a>
           </li>
           <li>
             <a
-              href="/child-safety-standards"
-              onClick={(e) => nav(e, '/child-safety-standards')}
+              href={isYesteroRoute ? '/yestero/terms' : '/terms'}
+              onClick={(e) => nav(e, isYesteroRoute ? '/yestero/terms' : '/terms')}
               className={linkClass}
             >
-              Child Safety Standards
+              {isYesteroRoute ? 'Yestero Terms of Use' : 'Terms of Service'}
             </a>
           </li>
+          {!isYesteroRoute && (
+            <li>
+              <a
+                href="/child-safety-standards"
+                onClick={(e) => nav(e, '/child-safety-standards')}
+                className={linkClass}
+              >
+                Child Safety Standards
+              </a>
+            </li>
+          )}
           <li>
             <a href="#contact" onClick={(e) => section(e, 'contact')} className={linkClass}>
               Contact

@@ -1,29 +1,74 @@
 import React from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
-import { LegalDocument, PageRoute } from '../types';
+import { DocumentNavItem, LegalDocument, PageRoute } from '../types';
 import { Reveal } from './Reveal';
 
 interface LegalPageProps {
   title: string;
   document: LegalDocument;
   navigate: (route: PageRoute) => void;
+  currentRoute?: PageRoute;
+  eyebrow?: string;
+  documentNav?: DocumentNavItem[];
 }
 
-export const LegalPage: React.FC<LegalPageProps> = ({ title, document: doc, navigate }) => {
+export const LegalPage: React.FC<LegalPageProps> = ({
+  title,
+  document: doc,
+  navigate,
+  currentRoute,
+  eyebrow,
+  documentNav,
+}) => {
   const reduceMotion = useReducedMotion();
+  const dateParts = [
+    doc.lastUpdated ? `Last updated ${doc.lastUpdated}` : null,
+    doc.effectiveDate ? `Effective ${doc.effectiveDate}` : null,
+  ].filter(Boolean);
 
   return (
     <article className="pt-32 pb-24">
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
-        <button
-          type="button"
-          onClick={() => navigate('/')}
-          className="no-print inline-flex items-center gap-2 text-sm text-muted hover:text-ink transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Back
-        </button>
+        <div className="no-print flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+          <button
+            type="button"
+            onClick={() => navigate('/')}
+            className="inline-flex w-fit items-center gap-2 text-sm text-muted hover:text-ink transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to Master Dev
+          </button>
+
+          {documentNav && documentNav.length > 0 && (
+            <nav aria-label={`${eyebrow ?? 'App'} documents`}>
+              <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+                {documentNav.map((item) => {
+                  const isActive = item.route === currentRoute;
+                  return (
+                    <li key={item.route}>
+                      <a
+                        href={item.route}
+                        onClick={(event) => {
+                          event.preventDefault();
+                          navigate(item.route);
+                        }}
+                        aria-current={isActive ? 'page' : undefined}
+                        className={`border-b pb-1 transition-colors ${
+                          isActive
+                            ? 'border-ink text-ink'
+                            : 'border-transparent text-muted hover:text-ink'
+                        }`}
+                      >
+                        {item.label}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
+          )}
+        </div>
 
         <motion.header
           initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
@@ -31,10 +76,13 @@ export const LegalPage: React.FC<LegalPageProps> = ({ title, document: doc, navi
           transition={{ duration: reduceMotion ? 0 : 0.55, ease: [0.22, 1, 0.36, 1] }}
           className="mt-8 pb-10 border-b border-line"
         >
+          {eyebrow && (
+            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-accent">
+              {eyebrow}
+            </p>
+          )}
           <h1 className="font-serif text-5xl sm:text-7xl tracking-tight">{title}</h1>
-          <p className="mt-4 text-sm text-muted">
-            Last updated {doc.lastUpdated} · Effective {doc.effectiveDate}
-          </p>
+          {dateParts.length > 0 && <p className="mt-4 text-sm text-muted">{dateParts.join(' · ')}</p>}
         </motion.header>
 
         <div className="mt-12 grid gap-12 lg:grid-cols-[14rem_1fr]">

@@ -12,6 +12,12 @@ import { FAQSection } from './components/FAQSection';
 import { ContactSection } from './components/ContactSection';
 import { LegalPage } from './components/LegalPage';
 import { Footer } from './components/Footer';
+import {
+  yesteroDocumentNav,
+  yesteroPolicyDocument,
+  yesteroSupportDocument,
+  yesteroTermsDocument,
+} from './data/yestero';
 
 export default function App() {
   const [currentRoute, setCurrentRoute] = useState<PageRoute>('/');
@@ -22,14 +28,25 @@ export default function App() {
     const parseRoute = (): PageRoute => {
       const path = window.location.pathname.toLowerCase();
       const hash = window.location.hash.toLowerCase();
+      const location = `${path}${hash}`;
 
-      if (path.includes('/child-safety-standards') || hash.includes('child-safety-standards')) {
+      if (location.includes('yestero/support')) {
+        return '/yestero/support';
+      }
+      if (location.includes('yestero/policy')) {
+        return '/yestero/policy';
+      }
+      if (location.includes('yestero/terms')) {
+        return '/yestero/terms';
+      }
+
+      if (location.includes('/child-safety-standards') || hash.includes('child-safety-standards')) {
         return '/child-safety-standards';
       }
-      if (path.includes('/policy') || hash.includes('policy')) {
+      if (location.includes('/policy') || hash.includes('policy')) {
         return '/policy';
       }
-      if (path.includes('/terms') || hash.includes('terms')) {
+      if (location.includes('/terms') || hash.includes('terms')) {
         return '/terms';
       }
       return '/';
@@ -110,11 +127,44 @@ export default function App() {
                 navigate={navigate}
               />
             )}
+
+            {currentRoute === '/yestero/support' && (
+              <LegalPage
+                title="Support"
+                eyebrow="Yestero"
+                document={yesteroSupportDocument}
+                documentNav={yesteroDocumentNav}
+                currentRoute={currentRoute}
+                navigate={navigate}
+              />
+            )}
+
+            {currentRoute === '/yestero/policy' && (
+              <LegalPage
+                title="Privacy Policy"
+                eyebrow="Yestero"
+                document={yesteroPolicyDocument}
+                documentNav={yesteroDocumentNav}
+                currentRoute={currentRoute}
+                navigate={navigate}
+              />
+            )}
+
+            {currentRoute === '/yestero/terms' && (
+              <LegalPage
+                title="Terms of Use"
+                eyebrow="Yestero"
+                document={yesteroTermsDocument}
+                documentNav={yesteroDocumentNav}
+                currentRoute={currentRoute}
+                navigate={navigate}
+              />
+            )}
           </motion.div>
         </AnimatePresence>
       </main>
 
-      <Footer navigate={navigate} scrollToSection={scrollToSection} />
+      <Footer currentRoute={currentRoute} navigate={navigate} scrollToSection={scrollToSection} />
     </div>
   );
 }
