@@ -17,7 +17,7 @@ const sections = [
   { id: 'faq', label: 'FAQ' },
 ];
 
-export const Navbar: React.FC<NavbarProps> = ({ navigate, scrollToSection }) => {
+export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate, scrollToSection }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const reduceMotion = useReducedMotion();
@@ -36,7 +36,7 @@ export const Navbar: React.FC<NavbarProps> = ({ navigate, scrollToSection }) => 
 
   return (
     <motion.header
-      initial={reduceMotion ? false : { y: -70 }}
+      initial={reduceMotion || currentRoute.startsWith('/yestero/') ? false : { y: -70 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 inset-x-0 z-50 bg-paper/95 backdrop-blur-sm transition-colors ${

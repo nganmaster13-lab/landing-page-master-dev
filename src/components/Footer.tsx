@@ -30,7 +30,7 @@ export const Footer: React.FC<FooterProps> = ({ currentRoute, navigate, scrollTo
 
   return (
     <footer className="border-t border-line text-sm text-muted">
-      <Reveal className="max-w-6xl mx-auto px-5 sm:px-8 py-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4" distance={16}>
+      <Reveal className="max-w-6xl mx-auto px-5 sm:px-8 py-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4" distance={16} animateOnEnter={!isYesteroRoute}>
         <div className="lg:col-span-2">
           <div className="flex items-center gap-3">
             <img
@@ -132,7 +132,7 @@ export const Footer: React.FC<FooterProps> = ({ currentRoute, navigate, scrollTo
         </ul>
       </Reveal>
 
-      <Reveal className="max-w-6xl mx-auto px-5 sm:px-8 pb-10 text-xs leading-relaxed space-y-2" delay={0.06} distance={12}>
+      <Reveal className="max-w-6xl mx-auto px-5 sm:px-8 pb-10 text-xs leading-relaxed space-y-2" delay={0.06} distance={12} animateOnEnter={!isYesteroRoute}>
         <p>
           © {year} {db.company.legalName}
         </p>

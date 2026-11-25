@@ -12,60 +12,34 @@ import { FAQSection } from './components/FAQSection';
 import { ContactSection } from './components/ContactSection';
 import { LegalPage } from './components/LegalPage';
 import { Footer } from './components/Footer';
-import {
-  yesteroDocumentNav,
-  yesteroPolicyDocument,
-  yesteroSupportDocument,
-  yesteroTermsDocument,
-} from './data/yestero';
+import { yesteroPages } from './data/yestero';
+import { getPageRoute } from './routes';
 
-export default function App() {
-  const [currentRoute, setCurrentRoute] = useState<PageRoute>('/');
+export default function App({ initialRoute }: { initialRoute: PageRoute }) {
+  const [currentRoute, setCurrentRoute] = useState(initialRoute);
   const reduceMotion = useReducedMotion();
+  const yesteroPage = yesteroPages.find((page) => page.route === currentRoute);
 
-  // Initialize and listen to route changes (supporting both pathname and hash for robust previewing)
   useEffect(() => {
-    const parseRoute = (): PageRoute => {
-      const path = window.location.pathname.toLowerCase();
-      const hash = window.location.hash.toLowerCase();
-      const location = `${path}${hash}`;
-
-      if (location.includes('yestero/support')) {
-        return '/yestero/support';
+    const handleLocationChange = () => {
+      const route = getPageRoute(window.location.pathname, window.location.hash);
+      if (route !== currentRoute) {
+        setCurrentRoute(route);
+        window.scrollTo({ top: 0 });
       }
-      if (location.includes('yestero/policy')) {
-        return '/yestero/policy';
-      }
-      if (location.includes('yestero/terms')) {
-        return '/yestero/terms';
-      }
-
-      if (location.includes('/child-safety-standards') || hash.includes('child-safety-standards')) {
-        return '/child-safety-standards';
-      }
-      if (location.includes('/policy') || hash.includes('policy')) {
-        return '/policy';
-      }
-      if (location.includes('/terms') || hash.includes('terms')) {
-        return '/terms';
-      }
-      return '/';
     };
 
-    setCurrentRoute(parseRoute());
-
-    const handlePopState = () => {
-      setCurrentRoute(parseRoute());
-      window.scrollTo({ top: 0 });
-    };
-
-    window.addEventListener('popstate', handlePopState);
-    window.addEventListener('hashchange', handlePopState);
+    window.addEventListener('popstate', handleLocationChange);
+    window.addEventListener('hashchange', handleLocationChange);
     return () => {
-      window.removeEventListener('popstate', handlePopState);
-      window.removeEventListener('hashchange', handlePopState);
+      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('hashchange', handleLocationChange);
     };
-  }, []);
+  }, [currentRoute]);
+
+  useEffect(() => {
+    document.title = yesteroPage ? `Yestero ${yesteroPage.title}` : 'Master Dev - Mobile App Studio';
+  }, [yesteroPage]);
 
   const navigate = (route: PageRoute) => {
     setCurrentRoute(route);
@@ -73,7 +47,7 @@ export default function App() {
       window.history.pushState({}, '', route);
     } catch {
       // Fallback for sandboxed iframes that may restrict pushState
-      window.location.hash = route === '/' ? '' : route.replace('/', '');
+      window.location.hash = route;
     }
     window.scrollTo({ top: 0 });
   };
@@ -128,34 +102,12 @@ export default function App() {
               />
             )}
 
-            {currentRoute === '/yestero/support' && (
+            {yesteroPage && (
               <LegalPage
-                title="Support"
+                title={yesteroPage.title}
                 eyebrow="Yestero"
-                document={yesteroSupportDocument}
-                documentNav={yesteroDocumentNav}
-                currentRoute={currentRoute}
-                navigate={navigate}
-              />
-            )}
-
-            {currentRoute === '/yestero/policy' && (
-              <LegalPage
-                title="Privacy Policy"
-                eyebrow="Yestero"
-                document={yesteroPolicyDocument}
-                documentNav={yesteroDocumentNav}
-                currentRoute={currentRoute}
-                navigate={navigate}
-              />
-            )}
-
-            {currentRoute === '/yestero/terms' && (
-              <LegalPage
-                title="Terms of Use"
-                eyebrow="Yestero"
-                document={yesteroTermsDocument}
-                documentNav={yesteroDocumentNav}
+                document={yesteroPage.document}
+                documentNav={yesteroPages}
                 currentRoute={currentRoute}
                 navigate={navigate}
               />

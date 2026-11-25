@@ -1,11 +1,5 @@
 import { DocumentNavItem, LegalDocument } from '../types';
 
-export const yesteroDocumentNav: DocumentNavItem[] = [
-  { label: 'Support', route: '/yestero/support' },
-  { label: 'Privacy', route: '/yestero/policy' },
-  { label: 'Terms', route: '/yestero/terms' },
-];
-
 export const yesteroSupportDocument: LegalDocument = {
   company: 'Master Dev',
   contactEmail: 'nganmaster13@gmail.com',
@@ -246,3 +240,12 @@ Yestero does not access your location and does not add location information to y
     },
   ],
 };
+
+export const yesteroPages: (DocumentNavItem & {
+  title: string;
+  document: LegalDocument;
+})[] = [
+  { label: 'Support', route: '/yestero/support', title: 'Support', document: yesteroSupportDocument },
+  { label: 'Privacy', route: '/yestero/policy', title: 'Privacy Policy', document: yesteroPolicyDocument },
+  { label: 'Terms', route: '/yestero/terms', title: 'Terms of Use', document: yesteroTermsDocument },
+];

@@ -6,6 +6,7 @@ interface RevealProps {
   className?: string;
   delay?: number;
   distance?: number;
+  animateOnEnter?: boolean;
 }
 
 export const Reveal: React.FC<RevealProps> = ({
@@ -13,13 +14,14 @@ export const Reveal: React.FC<RevealProps> = ({
   className,
   delay = 0,
   distance = 24,
+  animateOnEnter = true,
 }) => {
   const reduceMotion = useReducedMotion();
 
   return (
     <motion.div
       className={className}
-      initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: distance }}
+      initial={reduceMotion || !animateOnEnter ? false : { opacity: 0, y: distance }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.18 }}
       transition={{ duration: reduceMotion ? 0 : 0.65, delay, ease: [0.22, 1, 0.36, 1] }}

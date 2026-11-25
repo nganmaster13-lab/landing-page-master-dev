@@ -31,14 +31,17 @@ export const LegalPage: React.FC<LegalPageProps> = ({
     <article className="pt-32 pb-24">
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
         <div className="no-print flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-          <button
-            type="button"
-            onClick={() => navigate('/')}
+          <a
+            href="/"
+            onClick={(event) => {
+              event.preventDefault();
+              navigate('/');
+            }}
             className="inline-flex w-fit items-center gap-2 text-sm text-muted hover:text-ink transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Master Dev
-          </button>
+          </a>
 
           {documentNav && documentNav.length > 0 && (
             <nav aria-label={`${eyebrow ?? 'App'} documents`}>
@@ -71,7 +74,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({
         </div>
 
         <motion.header
-          initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+          initial={reduceMotion || documentNav ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: reduceMotion ? 0 : 0.55, ease: [0.22, 1, 0.36, 1] }}
           className="mt-8 pb-10 border-b border-line"
@@ -98,7 +101,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({
             </ul>
           </nav>
 
-          <Reveal className="max-w-2xl">
+          <Reveal className="max-w-2xl" animateOnEnter={!documentNav}>
             <p className="text-lg leading-relaxed">{doc.introduction}</p>
 
             {doc.sections.map((section) => (
